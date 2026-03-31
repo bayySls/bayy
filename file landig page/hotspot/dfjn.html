@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Login</title>
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="expires" content="-1" />	
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<link rel="stylesheet" href="login.css" media="screen">
+ 
+
+</head>
+<body class='login'>
+$(if chap-id)
+	<form name="sendin" action="$(link-login-only)" method="post">
+		<input type="hidden" name="username" />
+		<input type="hidden" name="password" />
+		<input type="hidden" name="dst" value="$(link-orig)" />
+		<input type="hidden" name="popup" value="true" />
+	</form>
+	
+	<script type="text/javascript" src="/md5.js"></script>
+	<script type="text/javascript">
+	<!--
+	    function doLogin() {
+		document.sendin.username.value = document.login.username.value;
+		document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+		document.sendin.submit();
+		return false;
+	    }
+	//-->
+	</script>
+$(endif)
+
+
+<form class="vertical-form" name="login" action="$(link-login-only)" method="post" background="#A03472"
+	$(if chap-id) onSubmit="return doLogin()" $(endif)>
+<input type="hidden" name="dst" value="$(link-orig)" />
+<input type="hidden" name="popup" value="true" />
+<div style="margin:0;padding:0;display:inline"></div>
+<legend>
+<img class="logo" src="logo.gif" />
+<aqui se puede escribir>
+</legend>
+<input autocomplete="on" name="username" type="text" value="$(username)" placeholder=" Username" size="15" />
+<input autocomplete="off" name="password" type="password" label="false" placeholder=" Password" size="15" />
+<input name="submit" type="submit" value=" " />
+<div class='footer'>
+<p>$(if trial == 'yes')Free trial available, <a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">click here</a>.$(endif)</p>
+<p>$(if error)<span style="color: #ffffff; font-size: 16px">$(error)</span>$(endif)</p>
+<br>
+<p>
+</p>
+</div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - Itadori Background</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #1e293b;
+      --accent: #38bdf8;
+      --text: #f1f5f9;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: grid;
+      place-items: center;
+
+      /* === background diganti ke logo.gif === */
+      background: linear-gradient(180deg, var(--bg), #0b1220),
+                  url('logo.gif') center/cover no-repeat;
+      background-blend-mode: multiply;
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      color: var(--text);
+    }
+}
+.login{font-family:arial;padding:90px 0 0 0}.login .logo{display:block;border-radius: 10px;margin:0 auto 30px}.login a,.login a:visited{text-decoration:underline;color:inherit}ul.notice{margin:30px auto;width:200px;text-align:center;list-style-position:inside;font-size:15px;padding:20px 30px;border-radius:3px}ul.notice.errors{background-color:#fff4f4;border:1px solid #f50909;color:#f50909}ul.notice.success{background-color:#d7eacd;border:1px solid #6fae4f;color:#6fae4f}ul.notice li{padding:5px 0}.vertical-form{margin:0 auto}.vertical-form legend{width:100%;font-size:24px;font-weight:500;text-align:center;margin:0 0 30px 0}.vertical-form input[type='text'],.vertical-form input[type='password'],.vertical-form input[type='number']{border:1px #252525 solid;color:#c1c1c1;background: #252525	;opacity: 1;
+    filter: alpha(opacity=95);
+height:30px;font-size:14px}.vertical-form input[type='text'],.vertical-form input[type='password'],.vertical-form input[type='submit'],.vertical-form input[type='number']{display:block;margin:0 auto 8px auto;width:200px;text-align:left;border-radius:2px;color:#0CFFFF;outline:none;font-family:inherit}.vertical-form input[type='submit']{-webkit-appearance:none;color:#fff;background:#252525;
+    background-image:url(lock.png);
+	background-repeat: no-repeat; background-position:center;
+    opacity: 1.0;
+    filter: alpha(opacity=95);
+    position: relative;
+left:90px;top:-75px;border:5px solid #000000;border-radius:30px;text-align:center;height:60px;width:60px;font-size:11px;font-weight:400;outline:0;text-transform:uppercase;letter-spacing:1.5px;cursor:pointer}.vertical-form input:hover[type='submit']{background-color:#0CFFFF;
+    background-image:url(lock.png);
+	background-repeat: no-repeat; background-position:center;
+    -webkit-transition:all 0.3s ease;-moz-transition:all 0.3s ease;-o-transition:all 0.3s ease;transition:all 0.3s ease}.vertical-form .footer{text-align:center}.vertical-form .footer p:first-child{color:#0CFFFF}.vertical-form .footer a:first-child{border-bottom:solid 1px #ccc;text-decoration:none}.vertical-form .footer p:nth-child(2) a{border-bottom:solid 1px #000} @media (max-width:200px){.login{padding:0px 0 0 0}}
+</form>
+
+<script type="text/javascript">
+<!--
+  document.login.username.focus();
+//-->
+</script>
+<script type="text/javascript">
+document.oncontextmenu = function(){return false;}
+</script>
+</body>
+</html>
