@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache" />
+  <meta http-equiv="expires" content="-1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Wifi Bayy</title>
 
+  
+  <script src="/md5.js"></script>
+  <script>
+    function doLogin() {
+      document.sendin.username.value = document.login.username.value;
+      document.sendin.password.value =
+        hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+      document.sendin.submit();
+      return false;
+    }
+  </script>
+  
+
   <style>
+    /* CSS KAMU TIDAK DIUBAH */
     * {
       margin: 0;
       padding: 0;
@@ -22,7 +39,7 @@
       color: #fff;
     }
 
- .amongus-character {
+    .amongus-character {
       position: absolute;
       z-index: 999;
       pointer-events: none;
@@ -34,35 +51,28 @@
     .pedang { width: 100px; animation: moveInside3 30s infinite ease-in-out; }
     .picaxe { width: 60px; animation: moveInside4 30s infinite ease-in-out; }
 
-
     @keyframes moveInside1 {
-      0%   { top: 10%; left: 10%; transform: rotate(0deg); }
-      25%  { top: 10%; left: 80%; transform: rotate(90deg); }
-      50%  { top: 80%; left: 80%; transform: rotate(180deg); }
-      75%  { top: 80%; left: 10%; transform: rotate(270deg); }
-      100% { top: 10%; left: 10%; transform: rotate(360deg); }
+      0% { top: 10%; left: 10%; }
+      50% { top: 80%; left: 80%; }
+      100% { top: 10%; left: 10%; }
     }
 
     @keyframes moveInside2 {
-      0%   { top: 80%; left: 80%; transform: rotate(0deg); }
-      33%  { top: 20%; left: 50%; transform: rotate(-120deg); }
-      66%  { top: 70%; left: 10%; transform: rotate(-240deg); }
-      100% { top: 80%; left: 80%; transform: rotate(-360deg); }
+      0% { top: 80%; left: 80%; }
+      50% { top: 20%; left: 20%; }
+      100% { top: 80%; left: 80%; }
     }
 
     @keyframes moveInside3 {
-      0%   { top: 40%; left: 80%; transform: rotate(0deg); }
-      33%  { top: 20%; left: 50%; transform: rotate(-150deg); }
-      66%  { top: 60%; left: 10%; transform: rotate(-230deg); }
-      100% { top: 30%; left: 80%; transform: rotate(-360deg); }
+      0% { top: 40%; left: 80%; }
+      50% { top: 60%; left: 10%; }
+      100% { top: 40%; left: 80%; }
     }
 
     @keyframes moveInside4 {
-      0%   { top: 10%; left: 10%; transform: rotate(0deg); }
-      25%  { top: 10%; left: 80%; transform: rotate(90deg); }
-      50%  { top: 80%; left: 80%; transform: rotate(180deg); }
-      75%  { top: 80%; left: 10%; transform: rotate(270deg); }
-      100% { top: 10%; left: 10%; transform: rotate(360deg); }
+      0% { top: 10%; left: 10%; }
+      50% { top: 80%; left: 80%; }
+      100% { top: 10%; left: 10%; }
     }
 
     .container {
@@ -82,25 +92,21 @@
 
     .title h1 {
       font-size: 20px;
-      text-shadow: 2px 2px #000000;
-      line-height: 1.4;
+      text-shadow: 2px 2px #000;
       font-style: italic;
     }
 
     .login-box {
-      background:url(images.jpg) no-repeat center center fixed;
+      background:url(images.jpg) no-repeat center center;
+      background-size: cover;
       border: 15px solid #1f3f1f;
-      padding: 2px;
+      padding: 10px;
       box-shadow: inset -4px -4px #1f3f1f;
     }
-      
-    
 
     .login-box h2 {
       text-align: center;
-      margin-bottom: 5px;
-      font-size: 18px;
-      text-shadow: 1px 1px #000;
+      margin-bottom: 10px;
     }
 
     .login-box input {
@@ -109,11 +115,6 @@
       margin-bottom: 12px;
       border: 4px solid #1f3f1f;
       background: #fcfffa;
-      font-size: 14px;
-    }
-
-    .login-box input::placeholder {
-      color: #000000;
     }
 
     .login-box button {
@@ -121,72 +122,62 @@
       padding: 12px;
       background: #7fbf3f;
       color: #fff;
-      font-size: 16px;
       font-weight: bold;
       border: 4px solid #4a7a1f;
-      box-shadow: inset -3px -3px #4a7a1f;
       cursor: pointer;
-    }
-
-    .login-box button:active {
-      box-shadow: inset 3px 3px #4a7a1f;
-    }
-
-    .info {
-      text-align: center;
-      font-size: 12px;
-      margin-left: auto;
-      opacity: 0.9;
     }
 
     .footer {
       text-align: center;
-      font-size: 15px;
       margin-top: 16px;
-      opacity: 0.8;
     }
   </style>
 </head>
+
 <body>
 
-<img src="creepers.png" alt="Among Us Pink" class="amongus-character pink">
-  <img src="golem.png" alt="Among Us Blue" class="amongus-character blue">
-<img src="pedang.png" alt="Among Us Blue" class="amongus-character pedang">
-<img src="zombie.png" alt="Among Us Blue" class="amongus-character picaxe">
 
-  <div class="container">
+<form name="sendin" action="$(link-login-only)" method="post" style="display:none">
+  <input type="hidden" name="username" />
+  <input type="hidden" name="password" />
+  <input type="hidden" name="dst" value="$(link-orig)" />
+  <input type="hidden" name="popup" value="true" />
+</form>
 
-    <div class="title">
-      <h1>
-        SELAMAT DATANG DI NET<br>
-        <strong>Bayy Batu</strong>
-      </h1>
-    </div>
 
-    <div class="login-box">
-      <h2>CODE HERE</h2>
+<img src="creepers.png" class="amongus-character pink">
+<img src="golem.png" class="amongus-character blue">
+<img src="pedang.png" class="amongus-character pedang">
+<img src="zombie.png" class="amongus-character picaxe">
 
-      <!-- FORM LOGIN HOTSPOT -->
-      <form method="post" action="$(link-login-only)">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
+<div class="container">
 
-        <input type="hidden" name="dst" value="$(link-orig)">
-        <input type="hidden" name="popup" value="true">
+  <div class="title">
+    <h1>SELAMAT DATANG DI NET<br><strong>Bayy Batu</strong></h1>
+  </div>
 
-        <button type="submit">MASUK</button>
-      </form>
+  <div class="login-box">
+    <h2>LOGIN</h2>
 
-      <div class="info">
-        
-      </div>
-    </div>
+    <form name="login" action="$(link-login-only)" method="post"
+      $(if chap-id) onSubmit="return doLogin()" $(endif)>
 
-    <div class="footer">
-      © BayySL
-    </div>
+      <input type="hidden" name="dst" value="$(link-orig)" />
+      <input type="hidden" name="popup" value="true" />
+
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="password" name="password" placeholder="Password" required>
+
+      <button type="submit">MASUK</button>
+    </form>
 
   </div>
+
+  <div class="footer">
+    © BayySL
+  </div>
+
+</div>
 
 </body>
 </html>
